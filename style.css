@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+/*Pseudo-Klasse-Selektor*/
+:root { /* mit ":root" Variablen für das gesamte Styling definieren */
+  /* FARBVERLÄUFE für den Hintergrung*/
+  --gradient_1: linear-gradient(to right bottom, #40beff, #40ffba);
+  --gradient_2: linear-gradient(to left bottom, #f4ff29, #00ffc6);
+  --gradient_3: linear-gradient(to right bottom, rgb(1 100 149 / 30%), rgb(35 125 170 / 30%));
+  --gradient_4: linear-gradient(to right bottom, rgb(1 100 149 / 50%), rgb(35 125 170 / 50%));
+  --gradient_5: linear-gradient(to right bottom, rgb(255 41 244), rgb(255 157 0));
+  --glass-bg: rgba(255, 255, 255, 0.3); /* Glas-Effekt für den Hintergrund */
+
+  /* GRÖSSEN für Abstände und Ecken*/
+  --padding_block: 8px 12px;
+  --radius: 18px;
+
+  /* STANDARD-RAHMEN für Elemente */
+  --border: 1px solid rgb(0 0 0 / 21%);
+}
+
+/* STIL-BODY */
+body { /*zentrieren*/
+  overflow: hidden;   /* Verhindert Scrollen */
+  background: linear-gradient(to bottom right,#cdebfd, #5bd7e3); /* Hintergrund mit Farbverlauf */
+  height: 100vh;      /* Höhe des Bildschirms */
+  display: flex;      /* Flexbox für Zentrierung */
+  align-items: center; /* Vertikale Zentrierung */
+  justify-content: center; /* Horizontale Zentrierung */
+  /*Zur INFO: Vertikale & horizontale Zentrierungen sorgen dafür, dass das Quiz-Element perfekt in der Mitte des Bildschirms steht*/
+  font-family: "Lato", sans-serif; /* Schriftart */
+}
+
+/* Entfernt unerwünschte Abstände und setzt box-sizing */
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* STIL-QUIZ-CONTAINER */
+.quiz {
+  width: 600px;       /*Breite*/
+  min-height: 560px;  /*Mindesthöhe*/
+  background: var(--gradient_1); /* Hintergrund des Quiz mit Farbverlauf */
+  padding: 32px;        /* Innenabstand */
+  border-radius: 32px;  /* Abgerundete Ecken */
+  display: flex;        /* Flexbox-Layout */
+  flex-direction: column; /* Elemente werden untereinander angeordnet */
+}
+
+/* STIL-QUIZ-TITEL */
+.quiz_title {
+  font-size: 22px; /* Schriftgröße */
+  font-weight: 300; /* Schriftstärke */
+  margin-bottom: 16px; /* Abstand unten */
+}
+
+/* CONTAINER für den FORTSCHRITTSBALKEN-Element */
+.quiz_progress-wrap {
+  display: flex; /* Flexbox für Layout */
+  align-items: center; /* Zentrierung der Items */
+  padding: var(--padding_block); /* Innenabstand */
+  border-radius: 20px; /* Abgerundete Ecken */
+  background-color: var(--glass-bg); /* Hintergrund mit Glas-Effekt */
+  margin-bottom: 64px; /* Abstand unten */
+}
+
+/* STIL für den FORTSCHRITTSBALKEN */
+.quiz_progress {
+  --size: 16px; /* Größe des Fortschrittsbalkens */
+  flex-grow: 1; /* Füllt den verfügbaren Platz gleichmäßig */
+  height: var(--size); /* Höhe */
+  border-radius: var(--size); /* Abgerundete Ecken */
+  background-color: #68c7de; /* Hintergrundfarbe */
+  border: var(--border); /* Rahmen */
+  margin-right: 16px; /* Abstand rechts */
+  position: relative; /* Positionierung für den Füllbereich */
+}
+
+/* STIL für den FÜLLBEREICH des FORTSCHRITTSBALKENS */
+.quiz_progress-fill {
+  position: absolute; /* Absolute Positionierung innerhalb des Fortschrittsbalkens */
+  top: 0; /* Position oben */
+  bottom: 0; /* Position unten */
+  left: 0; /* Position links */
+  width: 0; /* Anfangsbreite ist 0, wird dynamisch angepasst */
+  border-radius: var(--size); /* Abgerundete Ecken */
+  background: var(--gradient_2); /* Hintergrund mit Farbverlauf */
+  transition: width 0.5s ease-in-out; /* Übergangseffekt bei Breitenänderung (sanfte Beginn & Ende)*/
+}
+
+/* STIL für die FORTSCHRITTSFRAGE */
+.quiz_progress-questions {
+  font-weight: 300; /* Schriftstärke */
+  font-size: 18px;  /* Schriftgröße */
+}
+
+/* STIL für den Text innerhalb der FORTSCHRITTSFRAGEN */
+.quiz_progress-questions strong {
+  font-weight: 700; /* Fettgedruckter Text */
+}
+
+/* ABSTAND zw. den Fragen */
+.quiz_progress-questions *:not(:last-child) {
+  margin-right: 2px; /* Abstand rechts für alle, außer dem letzten Element */
+}
+
+/* Reduziert die Sichtbarkeit des zweiten Frageelements */
+.quiz_progress-questions *:nth-child(2) {
+  opacity: 0.3; /* Weniger sichtbar (30%), damit es nicht so hell bleibt*/
+}
+
+/* STIL für die FRAGE */
+.quiz_question {
+  font-size: 20px; /* Schriftgröße */
+  font-weight: 600; /* Schriftstärke */
+  margin-bottom: 16px; /* Abstand unten */
+}
+
+/* STIL für den fetten Text in der Frage */
+.quiz_question strong {
+  margin-right: 4px; /* Abstand rechts */
+}
+
+/* STIL für den Antwort-Container */
+.quiz_answers {
+  background: var(--glass-bg); /* Hintergrund mit Glas-Effekt */
+  padding: 12px; /* Innenabstand */
+  border-radius: var(--radius); /* Abgerundete Ecken mit variablem Radius*/
+}
+
+/* STIL für jede einzelne Antwort */
+.quiz_answer {
+  cursor: pointer; /* Zeigt an, dass es anklickbar ist */
+  padding: var(--padding_block); /* Innenabstand */
+  background: var(--gradient_3); /* Hintergrund mit Farbverlauf */
+  color: white; /* Schriftfarbe */
+  border-radius: var(--radius); /* Abgerundete Ecken */
+  font-weight: 300; /* Schriftstärke leicht (schmal) */
+  line-height: 1.2em; /* Zeilenhöhe */
+}
+
+/* ABSTAND zw. den einzelnen Antworten */
+.quiz_answer:not(:last-child) {
+  margin-bottom: 12px; /* Abstand unten für alle, außer der letzten Antwort */
+}
+
+/* STIL für die KORREKTEN Antworten */
+.quiz_answer_valid,
+.quiz_answer_invalid {
+  --size: 20px; /* Größe des Symbols */
+  position: relative; /* Positionierung für das Symbol */
+  border: var(--border); /* Rahmen */
+  background: var(--gradient_4); /* Hintergrund mit Farbverlauf */
+  padding-right: calc(var(--size) + 16px); /* Innenabstand rechts, um Platz für das Symbol zu schaffen */
+}
+
+/* STIL für das SYMBOL "Häckchen" bei einer RICHTIGEN Antwort */
+.quiz_answer_valid::after, /*Häckchen*/
+.quiz_answer_invalid::after { /* Tochterelement */
+  content: '\2713'; /* Unicode für das Häkchen */
+  display: block; /* Block-Anzeige */
+  position: absolute; /* Absolute Positionierung innerhalb der Antwort */
+  top: 50%; /* Vertikale Zentrierung */
+  right: 5px; /* Abstand von rechts */
+  margin-top: calc(var(--size) / -2); /* Vertikale Zentrierung des Symbols Häckchen */
+  width: var(--size); /* Breite des Symbols */
+  height: var(--size); /* Höhe des Symbols */
+  border-radius: var(--size); /* Abgerundete Ecken */
+  background: var(--gradient_2); /* Hintergrund des Symbols mit Farbverlauf */
+  display: flex;  /* Flexbox für zentrierte Anzeige */
+  align-items: center; /* Vertikale Zentrierung des Inhalts */
+  justify-content: center; /* Horizontale Zentrierung des Inhalts */
+  color: black; /* Farbe des Symbols */
+}
+
+/* STIL für das SYMBOL "Kreuzchen" bei einer FALSCHEN Antwort */
+.quiz_answer_invalid::after {
+  content: '\00D7'; /* Unicode für das Kreuz */
+  background: var(--gradient_5); /* Hintergrund des Symbols mit Farbverlauf */
+}
+
+/* STIL für den BUTTON "Nächste Frage" */
+.quiz_btn {
+  cursor: pointer; /* Zeigt an, dass es anklickbar ist */
+  background: var(--gradient_2); /* Hintergrund mit Farbverlauf */
+  border: var(--border); /* Rahmen */
+  display: inline-block; /* Breite entsprechend dem Inhalt */
+  margin: 24px auto 0; /* Abstand oben, horizontal zentriert, unten 0 */
+  border-radius: 100px; /* Abgerundete Ecken für den Button */
+  padding: 12px 36px;  /* Innenabstand */
+  font-size: 18px; /* Schriftgröße */
+  font-weight: 400; /* Schriftstärke */
+}
+
+/* STIL für den deaktivierten BUTTON */
+.quiz_btn_disable {
+  opacity: 0.5; /* Reduzierte Sichtbarkeit */
+  pointer-events: none; /* Deaktiviert Interaktionen */
+}
+
+/* STIL für das ERGEBNISBILD */
+.quiz_result {
+  display: none; /* Versteckt das Ergebnisfeld standardmäßig */
+  flex-grow: 1; /* Füllt den verfügbaren Platz */
+  margin-bottom: 64px; /* Abstand unten */
+  text-align: center; /* Zentriert den Text */
+}
+
+/* STIL für den TITEL des ERGEBNISSES */
+.quiz_result_title { 
+  font-size: 120px; /* Schriftgröße des Ergebnistitels */
+  line-height: 1em; /* Zeilenhöhe */
+  margin-bottom: 12px; /* Abstand unterhalb des Titels */
+}
+
+/* STIL für den INFORMATIONSTEXT des ERGEBNISSES */
+.quiz_result_info {
+  font-size: 32px; /* Schriftgröße des Infotextes */
+  font-weight: 200; /* Schriftstärke des Infotextes */
+}
+
+/* STIL für die NUMMER des ERGEBNISSES */
+.quiz_result-num {
+  font-weight: 500;  /* Schriftstärke der Ergebnisnummer */
+  font-size: 48px; /* Schriftgröße der Ergebnisnummer */
+}
+
+/* RESPONSIVE DARSTELLUNG für Bildschirme mit max. Breite von 768px */
+ @media (max-width: 768px) {
+  .quiz {
+    padding: 24px; /* Innenabstand des Quiz-Containers */
+    border-radius: 24px; /* Abrundung der Ecken des Quiz-Containers */
+  }
+
+  .quiz_title {
+    font-size: 20px; /* Schriftgröße des Quiz-Titels */
+    margin-bottom: 12px; /* Abstand unterhalb des Titels */
+  }
+
+  .quiz_progress-wrap {
+    margin-bottom: 48px; /* Abstand unterhalb des Fortschrittsbalken-Containers */
+  }
+
+  .quiz_progress-questions {
+    font-size: 16px; /* Schriftgröße der Fortschrittsfragen */
+  }
+
+  .quiz_question {
+    font-size: 18px; /* Schriftgröße der Frage */
+    margin-bottom: 12px; /* Abstand unterhalb der Frage */
+  }
+
+  .quiz_answers {
+    padding: 10px; /* Innenabstand des Antwort-Containers */
+  }
+
+  .quiz_answer {
+    padding: var(--padding_block); /* Innenabstand jeder Antwort */
+    font-size: 14px; /* Schriftgröße der Antworten */
+  }
+
+  .quiz_btn {
+    padding: 8px 24px; /* Innenabstand des Buttons */
+    font-size: 16px; /* Schriftgröße des Buttons */
+  }
+
+  .quiz_result_title {
+    font-size: 100px; /* Schriftgröße des Ergebnistitels */
+  }
+
+  .quiz_result_info {
+    font-size: 28px;  /* Schriftgröße des Infotextes */
+  }
+
+  .quiz_result-num {
+    font-size: 40px; /* Schriftgröße der Ergebnisnummer */
+  }
+}
+
+/* RESPONSIVE DARSTELLUNG für Bildschirme mit max. Breite von 480px */
+@media (max-width: 480px) {
+  .quiz {
+    padding: 16px; /* Innenabstand des Quiz-Containers */
+    border-radius: 16px;  /* Abrundung der Ecken des Quiz-Containers */
+  }
+
+  .quiz_title {
+    font-size: 18px; /* Schriftgröße des Quiz-Titels */
+    margin-bottom: 8px; /* Abstand unterhalb des Titels */
+  }
+
+  .quiz_progress-wrap {
+    margin-bottom: 32px; /* Abstand unterhalb des Fortschrittsbalken-Containers */
+  }
+
+  .quiz_progress-questions {
+    font-size: 14px; /* Schriftgröße der Fortschrittsfragen */
+  }
+
+  .quiz_question {
+    font-size: 16px; /* Schriftgröße der Frage */
+    margin-bottom: 8px; /* Abstand unterhalb der Frage */
+  }
+
+  .quiz_answers {
+    padding: 8px; /* Innenabstand des Antwort-Containers */
+  }
+
+  .quiz_answer {
+    padding: 8px; /* Innenabstand jeder Antwort */
+    font-size: 12px; /* Schriftgröße der Antworten */
+  }
+
+  .quiz_btn {
+    padding: 6px 20px; /* Innenabstand des Buttons */
+    font-size: 14px; /* Schriftgröße des Buttons */
+  }
+
+  .quiz_result_title {
+    font-size: 80px; /* Schriftgröße des Ergebnistitels */
+  }
+
+  .quiz_result_info {
+    font-size: 24px; /* Schriftgröße des Infotextes */
+  }
+
+  .quiz_result-num {
+    font-size: 36px; /* Schriftgröße der Ergebnisnummer */
+  }
+}

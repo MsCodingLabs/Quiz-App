@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive Design -->
+  <link rel="stylesheet" href="style.css">                               <!-- CSS Datei einbinden -->
+  <title>Quiz</title>                                                    <!-- Titel der Seite -->
+</head>
+
+<body> <!--Container mit Inhalten erstellen.-->
+  <div class="quiz">
+    <div id="title" class="quiz_title"></div> <!-- Quiz Name -->
+    <div class="quiz_progress-wrap">          <!-- Fortschrittsbalke -->
+      <div class="quiz_progress">             <!-- Fortschrittsverlauf -->
+        <div id="progress-fill" class="quiz_progress-fill"></div> <!-- Fortschrittsanzeige -->
+      </div>
+      <div class="quiz_progress-questions">
+        <strong id="question-number"></strong> <!-- Aktuelle Frage-Nr. durch "strong" hervorheben -->
+        <span>/</span>                         <!-- Trennzeichen zwischen aktueller und Gesamtzahl der Fragen -->
+        <span id="total-questions"></span>     <!-- Gesamtzahl der Fragen -->
+      </div>
+    </div>
+
+    <div id="question-wrap" class="quiz_question">  <!-- Frage -->
+      <strong id="question-position">1</strong>     <!-- Aktuelle Frage-Nr. -->
+      <span id="question"></span>                   <!-- Fragetext -->
+    </div>
+
+    <div id="answers" class="quiz_answers"></div> <!-- Antworten anzeigen (z.B. Häckchen oder Kreuz) -->
+    <div id="next" class="quiz_btn">Nächste Frage</div>         <!-- Button "Nächste Frage"  -->
+    <div id="result" class="quiz_result" style="display:none;"> <!-- Ergebnisse am Schluss des Quiz anzeigen -->
+      <div class="quiz_result_title">🎉</div>     <!-- Ergebnis-Icon -->
+      <div class="quiz_result_info">
+        <span>Richtige Antworten:</span>          <!-- Text "Richtige Antworten" -->
+        <span id="valid-answers" class="quiz_result-num">0</span> <!-- Anzahl richtige Antworten -->
+        <span>von</span> <!-- Text "von" -->
+        <span id="result-total-questions">0</span>  <!-- Gesamtzahl der Fragen im Ergebnis -->
+      </div>        
+    </div>
+  </div>
+
+  <script src="data.js"></script>   <!-- Daten Script -->
+  <script src="script.js"></script> <!-- Logik Script -->
+</body>
+</html>
